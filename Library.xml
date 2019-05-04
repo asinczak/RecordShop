@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MovieRecordLibrary>
+    <MovieRecord>
+        <id>1</id>
+        <title>Nietykalni</title>
+        <price>8.0</price>
+        <genre>drama/comedy</genre>
+    </MovieRecord>
+    <MovieRecord>
+        <id>2</id>
+        <title>Zielona mila</title>
+        <price>5.0</price>
+        <genre>drama</genre>
+    </MovieRecord>
+    <MovieRecord>
+        <id>3</id>
+        <title>Skazani na Shawshank</title>
+        <price>5.0</price>
+        <genre>drama</genre>
+    </MovieRecord>
+    <MovieRecord>
+        <id>1</id>
+        <title>Forrest Gump</title>
+        <price>5.0</price>
+        <genre>drama/comedy</genre>
+    </MovieRecord>
+</MovieRecordLibrary>
