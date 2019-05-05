@@ -4,9 +4,12 @@ import pl.com.ttpsc.Data.MovieRecord;
 import pl.com.ttpsc.Data.MusicRecord;
 import pl.com.ttpsc.Data.MusicShop;
 import pl.com.ttpsc.Data.Record;
+import pl.com.ttpsc.Order.MovieOrder;
+import pl.com.ttpsc.Order.MusicOrder;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -24,6 +27,9 @@ public class EnteringDataService {
     MusicShop musicShop = MusicShop.getInstance();
     DisplayService displayService = DisplayService.getInstance();
     ShopService shopService = ShopService.getInstance();
+    FileService fileService = FileService.getInstance();
+    MovieOrder movieOrder = MovieOrder.getInstance();
+    MusicOrder musicOrder = MusicOrder.getInstance();
 
     public MusicRecord getDataToEnterNewMusicRecord() throws IOException, ClassNotFoundException {
         MusicRecord musicRecord = null;
@@ -59,10 +65,10 @@ public class EnteringDataService {
     public int assignId () throws IOException, ClassNotFoundException {
         int id = 1;
 
-        Optional<List> list = Optional.ofNullable(displayService.checkingListToDisplay());
+        Optional<List<? extends Record>> list = Optional.ofNullable(displayService.checkingListToGet());
 
-        if (!list.isPresent()){
-            List recordList = displayService.checkingListToDisplay();
+        if (list.isPresent()){
+            List recordList = displayService.checkingListToGet();
             Record record = (Record) recordList.stream().reduce((first, second) -> second).orElse(null);
             int lastIdFromList = record.getId();
             id = lastIdFromList + 1;
@@ -206,4 +212,47 @@ public class EnteringDataService {
             return movieRecord;
         }
     }
+
+    public Map<Integer, ? extends Record> checkingOrderToGet () throws IOException, ClassNotFoundException {
+        String settings = fileService.getClassToDo();
+        if (FileService.NAME_OF_MUSIC_SHOP.equals(settings)){
+
+            return musicOrder.getMusicRecordOrder();
+        } else {
+            return movieOrder.getMovieRecordOrder();
+        }
+    }
+
+    public void getDataToMakeAnOrder () throws IOException, ClassNotFoundException {
+        displayService.displayAllRecords();
+        int counter = 1;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(IGeneralMessages.ENTER_DATA_9);
+        int id = scanner.nextInt();
+
+        displayService.checkingListToGet().stream().parallel().
+                filter(recordFrpmList -> (recordFrpmList).getId() == id).findFirst().get();
+
+        if (FileService.NAME_OF_MUSIC_SHOP.equals(fileService.getClassToDo())) {
+            MusicRecord musicRecord = (MusicRecord) getRecordToPutToOrder(id);
+            checkingOrderToGet().put(counter, musicRecord);
+
+        } else if (FileService.NAME_OF_RECORD_LIBRARY.equals(fileService.getClassToDo())) {
+            MovieRecord movieRecord = (MovieRecord) getRecordToPutToOrder(id);
+            checkingOrderToGet().put(counter, movieRecord);
+        }
+
+
+    }
+
+    public Record getRecordToPutToOrder (int id) throws IOException, ClassNotFoundException {
+        Record record = displayService.checkingListToGet().stream().parallel().
+                filter(recordFrpmList -> (recordFrpmList).getId() == id).findFirst().get();
+
+        return record;
+
+    }
+
+
 }

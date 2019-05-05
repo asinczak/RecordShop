@@ -97,6 +97,9 @@ public class MenuService {
                     movieRecordService.addRecordToLibrary();
                     break;
                 case 2:
+                    displayService.displayAllRecords();
+                    break;
+                case 3:
                     switchGoes = false;
                     System.out.println(IGeneralMessages.INFO_STATEMENT_4);
                     break;

@@ -6,6 +6,7 @@ import pl.com.ttpsc.Data.Record;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class DisplayService {
 
@@ -33,8 +34,14 @@ public class DisplayService {
     }
 
     public void displayAllRecords () throws IOException, ClassNotFoundException {
-    List recordList = checkingListToDisplay();
-        recordList.stream().forEach(record -> System.out.println(record));
+        Optional <List <? extends Record>> list = Optional.ofNullable(checkingListToGet());
+
+        if(list.isPresent()) {
+            List<? extends Record> recordList = checkingListToGet();
+            recordList.stream().forEach(record -> System.out.println(record));
+        } else {
+            System.out.println(IGeneralMessages.INFO_STATEMENT_5);
+        }
     }
 
     public void displayMainMenu() {
@@ -45,8 +52,8 @@ public class DisplayService {
         System.out.println(IGeneralMessages.MENU_OPTION_9);
     }
 
-    public List checkingListToDisplay () throws IOException, ClassNotFoundException {
-        List recordList = null;
+    public List <? extends Record> checkingListToGet() throws IOException, ClassNotFoundException {
+        List <? extends Record> recordList = null;
         String className = fileService.getClassToDo();
         if(className.equals(FileService.NAME_OF_MUSIC_SHOP)){
             recordList = musicShop.getRecordList();
@@ -62,6 +69,8 @@ public class DisplayService {
         System.out.println(IGeneralMessages.MENU_OPTION_2);
         System.out.println(IGeneralMessages.MENU_OPTION_10);
         System.out.println(IGeneralMessages.MENU_OPTION_11);
+        System.out.println(IGeneralMessages.MENU_OPTION_12);
+        System.out.println(IGeneralMessages.MENU_OPTION_13);
 
     }
 }

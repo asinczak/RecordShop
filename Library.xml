@@ -19,9 +19,39 @@
         <genre>drama</genre>
     </MovieRecord>
     <MovieRecord>
-        <id>1</id>
+        <id>4</id>
         <title>Forrest Gump</title>
         <price>5.0</price>
         <genre>drama/comedy</genre>
+    </MovieRecord>
+    <MovieRecord>
+        <id>5</id>
+        <title>Pulp fiction</title>
+        <price>5.0</price>
+        <genre>action</genre>
+    </MovieRecord>
+    <MovieRecord>
+        <id>6</id>
+        <title>Siedem</title>
+        <price>5.0</price>
+        <genre>criminal</genre>
+    </MovieRecord>
+    <MovieRecord>
+        <id>7</id>
+        <title>Django</title>
+        <price>7.0</price>
+        <genre>western</genre>
+    </MovieRecord>
+    <MovieRecord>
+        <id>8</id>
+        <title>Szeregowiec Rayan</title>
+        <price>5.0</price>
+        <genre>drama</genre>
+    </MovieRecord>
+    <MovieRecord>
+        <id>9</id>
+        <title>Milczenie owiec</title>
+        <price>5.0</price>
+        <genre>thriller</genre>
     </MovieRecord>
 </MovieRecordLibrary>

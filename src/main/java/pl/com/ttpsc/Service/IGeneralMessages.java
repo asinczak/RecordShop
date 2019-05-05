@@ -15,7 +15,8 @@ public interface IGeneralMessages {
             "\n 4 -> for available amount";
     public static final String ENTER_DATA_7 = "Enter the title of film"+
             "\n or enter X to return";
-    public static final String ENTER_DATA_8 = "Enter the genre of he film";
+    public static final String ENTER_DATA_8 = "Enter the genre of the film";
+    public static final String ENTER_DATA_9 = "Enter id to add record to order";
 
 
     public static final String MENU_OPTION_1 = "*******************************************";
@@ -27,14 +28,17 @@ public interface IGeneralMessages {
     public static final String MENU_OPTION_7 = "1 -> to enter to music record shop";
     public static final String MENU_OPTION_8 = "2 -> to enter to movie record library";
     public static final String MENU_OPTION_9 = "3 -> to exit";
-    public static final String MENU_OPTION_10 = "1 -> to add new record to library";
-    public static final String MENU_OPTION_11 = "2 -> to exit";
+    public static final String MENU_OPTION_10 = "1 -> to add new movie record to library";
+    public static final String MENU_OPTION_11 = "2 -> to display all records from library";
+    public static final String MENU_OPTION_12 = "3 -> to make an order";
+    public static final String MENU_OPTION_13 = "4 -> to exit";
 
 
     public static final String INFO_STATEMENT_1 = "Finish!";
     public static final String INFO_STATEMENT_2 = "Wrong data, please try one more time";
     public static final String INFO_STATEMENT_3 = "Wrong data, there is no such Id, please try one more time";
     public static final String INFO_STATEMENT_4 = "Exit";
+    public static final String INFO_STATEMENT_5 = "Error, no list available";
 
 
 

@@ -60,7 +60,7 @@ public class FileService {
             if (option == 1) {
                 writer.write(NAME_OF_MUSIC_SHOP);
             } else if (option == 2) {
-                writer.write("MovieRecordLibrary");
+                writer.write(NAME_OF_RECORD_LIBRARY);
             }
         }
     }
