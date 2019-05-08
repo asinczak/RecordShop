@@ -16,7 +16,8 @@ public interface IGeneralMessages {
     public static final String ENTER_DATA_7 = "Enter the title of film"+
             "\n or enter X to return";
     public static final String ENTER_DATA_8 = "Enter the genre of the film";
-    public static final String ENTER_DATA_9 = "Enter id to add record to order";
+    public static final String ENTER_DATA_9 = "Enter id to add record to order"+
+            "\n or enter 0 to finish";
 
 
     public static final String MENU_OPTION_1 = "*******************************************";

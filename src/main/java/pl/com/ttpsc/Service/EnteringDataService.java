@@ -220,33 +220,16 @@ public class EnteringDataService {
         }
     }
 
-    public void getDataToMakeAnOrder () throws IOException, ClassNotFoundException {
+    public int getDataToMakeAnOrder () throws IOException, ClassNotFoundException {
         displayService.displayAllRecords();
-        int counter = 1;
+        int id = 0;
 
-       try( Scanner scanner = new Scanner(System.in)){
-        System.out.println(IGeneralMessages.ENTER_DATA_9);
-        int id = scanner.nextInt();
-
-
-        if (FileService.NAME_OF_MUSIC_SHOP.equals(fileService.getClassToDo())) {
-            MusicRecord musicRecord = (MusicRecord) getRecordToPutToOrder(id);
-            checkingOrderToGet().put(counter, musicRecord);
-
-        } else if (FileService.NAME_OF_RECORD_LIBRARY.equals(fileService.getClassToDo())) {
-            MovieRecord movieRecord = (MovieRecord) getRecordToPutToOrder(id);
-            checkingOrderToGet().put(counter, movieRecord);
+            try (Scanner scanner = new Scanner(System.in)) {
+                System.out.println(IGeneralMessages.ENTER_DATA_9);
+                id = scanner.nextInt();
             }
-        }
+
+        return id;
     }
-
-    public Record getRecordToPutToOrder (int id) throws IOException, ClassNotFoundException {
-        Record record = displayService.checkingListToGet().stream().parallel().
-                filter(recordFrpmList -> (recordFrpmList).getId() == id).findFirst().get();
-
-        return record;
-
-    }
-
 
 }
