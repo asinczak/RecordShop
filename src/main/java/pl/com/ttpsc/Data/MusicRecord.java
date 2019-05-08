@@ -4,9 +4,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement(name = "MusicRecord")
-public class MusicRecord  extends Record implements Serializable{
+public class MusicRecord  extends Record {
 
-    private static final long serialVersionUID = 369258147L;
+//    private static final long serialVersionUID = 369258147L;
 
 
     private String author;

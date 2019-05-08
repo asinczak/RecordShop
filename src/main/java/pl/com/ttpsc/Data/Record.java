@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType (XmlAccessType.FIELD)
-public class Record {
+public class Record implements IRecord{
 
     private int id;
     private String title;

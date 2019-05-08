@@ -2,6 +2,7 @@ package pl.com.ttpsc.Order;
 
 
 import pl.com.ttpsc.Data.MusicRecord;
+import pl.com.ttpsc.Data.Record;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,13 +19,13 @@ public class MusicOrder {
         return musicOrder;
     }
 
-    private Map<Integer, MusicRecord> musicRecordOrder = new LinkedHashMap<>();
+    private Map<Integer, Record> musicRecordOrder = new LinkedHashMap<>();
 
-    public Map<Integer, MusicRecord> getMusicRecordOrder() {
+    public Map<Integer, Record> getMusicRecordOrder() {
         return musicRecordOrder;
     }
 
-    public void setMusicRecordOrder(Map<Integer, MusicRecord> musicRecordOrder) {
+    public void setMusicRecordOrder(Map<Integer, Record> musicRecordOrder) {
         this.musicRecordOrder = musicRecordOrder;
     }
 }

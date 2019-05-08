@@ -1,9 +1,6 @@
 package pl.com.ttpsc.Service;
 
-import pl.com.ttpsc.Data.MovieRecord;
-import pl.com.ttpsc.Data.MusicRecord;
-import pl.com.ttpsc.Data.MusicShop;
-import pl.com.ttpsc.Data.Record;
+import pl.com.ttpsc.Data.*;
 import pl.com.ttpsc.Order.MovieOrder;
 import pl.com.ttpsc.Order.MusicOrder;
 
@@ -213,7 +210,7 @@ public class EnteringDataService {
         }
     }
 
-    public Map<Integer, ? extends Record> checkingOrderToGet () throws IOException, ClassNotFoundException {
+    public Map<Integer, Record> checkingOrderToGet () throws IOException, ClassNotFoundException {
         String settings = fileService.getClassToDo();
         if (FileService.NAME_OF_MUSIC_SHOP.equals(settings)){
 
@@ -227,12 +224,10 @@ public class EnteringDataService {
         displayService.displayAllRecords();
         int counter = 1;
 
-        Scanner scanner = new Scanner(System.in);
+       try( Scanner scanner = new Scanner(System.in)){
         System.out.println(IGeneralMessages.ENTER_DATA_9);
         int id = scanner.nextInt();
 
-        displayService.checkingListToGet().stream().parallel().
-                filter(recordFrpmList -> (recordFrpmList).getId() == id).findFirst().get();
 
         if (FileService.NAME_OF_MUSIC_SHOP.equals(fileService.getClassToDo())) {
             MusicRecord musicRecord = (MusicRecord) getRecordToPutToOrder(id);
@@ -241,9 +236,8 @@ public class EnteringDataService {
         } else if (FileService.NAME_OF_RECORD_LIBRARY.equals(fileService.getClassToDo())) {
             MovieRecord movieRecord = (MovieRecord) getRecordToPutToOrder(id);
             checkingOrderToGet().put(counter, movieRecord);
+            }
         }
-
-
     }
 
     public Record getRecordToPutToOrder (int id) throws IOException, ClassNotFoundException {

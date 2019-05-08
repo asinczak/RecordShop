@@ -1,6 +1,7 @@
 package pl.com.ttpsc.Order;
 
 import pl.com.ttpsc.Data.MovieRecord;
+import pl.com.ttpsc.Data.Record;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,14 +19,14 @@ public class MovieOrder {
     }
 
 
-    public Map<Integer, MovieRecord> getMovieRecordOrder() {
+    public Map<Integer, Record> getMovieRecordOrder() {
         return movieRecordOrder;
     }
 
-    public void setMovieRecordOrder(Map<Integer, MovieRecord> movieRecordOrder) {
+    public void setMovieRecordOrder(Map<Integer, Record> movieRecordOrder) {
         this.movieRecordOrder = movieRecordOrder;
     }
 
-    private Map<Integer, MovieRecord> movieRecordOrder = new LinkedHashMap<>();
+    private Map<Integer, Record> movieRecordOrder = new LinkedHashMap<>();
 
 }
