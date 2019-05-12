@@ -1,7 +1,7 @@
-package pl.com.ttpsc.Service;
+package pl.com.ttpsc.service;
 
-import pl.com.ttpsc.Data.MovieRecord;
-import pl.com.ttpsc.Data.MovieRecordLibrary;
+import pl.com.ttpsc.model.MovieRecord;
+import pl.com.ttpsc.model.MovieRecordLibrary;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;

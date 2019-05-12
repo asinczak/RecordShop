@@ -1,4 +1,4 @@
-package pl.com.ttpsc.Data;
+package pl.com.ttpsc.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

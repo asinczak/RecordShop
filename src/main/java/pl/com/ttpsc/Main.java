@@ -1,6 +1,6 @@
 package pl.com.ttpsc;
 
-import pl.com.ttpsc.Service.MenuService;
+import pl.com.ttpsc.service.MenuService;
 
 public class Main {
 

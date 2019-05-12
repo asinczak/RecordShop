@@ -1,24 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<MusicShop>
-    <MusicRecord>
-        <id>1</id>
-        <title>Raj</title>
-        <price>27.99</price>
-        <author>The Dumplings</author>
-        <availableAmt>10</availableAmt>
-    </MusicRecord>
-    <MusicRecord>
-        <id>2</id>
-        <title>Czerwony</title>
-        <price>25.99</price>
-        <author>COMA</author>
-        <availableAmt>10</availableAmt>
-    </MusicRecord>
-    <MusicRecord>
-        <id>3</id>
-        <title>Marchew w butonierce</title>
-        <price>17.99</price>
-        <author>Piżama Porno</author>
-        <availableAmt>5</availableAmt>
-    </MusicRecord>
-</MusicShop>
+<MusicRecordShop/>

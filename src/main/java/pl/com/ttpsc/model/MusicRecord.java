@@ -1,7 +1,6 @@
-package pl.com.ttpsc.Data;
+package pl.com.ttpsc.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
 
 @XmlRootElement(name = "MusicRecord")
 public class MusicRecord  extends Record {

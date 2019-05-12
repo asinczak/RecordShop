@@ -1,7 +1,7 @@
-package pl.com.ttpsc.Service;
+package pl.com.ttpsc.service;
 
-import pl.com.ttpsc.Data.MusicRecord;
-import pl.com.ttpsc.Data.MusicShop;
+import pl.com.ttpsc.model.MusicRecord;
+import pl.com.ttpsc.model.MusicRecordShop;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -18,16 +18,17 @@ public class MusicRecordService {
         return musicRecordService;
     }
 
-    MusicShop musicShop = MusicShop.getInstance();
+    MusicRecordShop musicRecordShop = MusicRecordShop.getInstance();
     EnteringDataService enteringDataService = EnteringDataService.getInstance();
     FileService fileService = FileService.getInstance();
+    SettingsService settingsService = SettingsService.getInstance();
 
     public void addRecordInStock () throws JAXBException, IOException, ClassNotFoundException {
         MusicRecord musicRecord = enteringDataService.getDataToEnterNewMusicRecord();
         if (musicRecord == null){
             System.out.println(IGeneralMessages.INFO_STATEMENT_4);
         } else {
-            musicShop.getRecordList().add(musicRecord);
+            musicRecordShop.getRecordList().add(musicRecord);
             fileService.writeMusicRecordToXMLfile();
         }
     }
@@ -35,7 +36,7 @@ public class MusicRecordService {
     public void updateRecord () throws JAXBException, IOException, ClassNotFoundException {
         int id = enteringDataService.getIdRecordToUpdate();
 
-        MusicRecord musicRecord = musicShop.getRecordList().stream().filter(musicRecord1 -> musicRecord1.getId() == id).findFirst().get();
+        MusicRecord musicRecord = musicRecordShop.getRecordList().stream().filter(musicRecord1 -> musicRecord1.getId() == id).findFirst().get();
 
         int dataToUpdate = enteringDataService.getDataToChange();
 
@@ -54,5 +55,30 @@ public class MusicRecordService {
                 break;
         }
         fileService.writeMusicRecordToXMLfile();
+    }
+
+    public void decreaseNumberOfAvailableRecordsOnStock (MusicRecord musicRecord){
+        int actualAvailableAmt = musicRecord.getAvailableAmt();
+
+        musicRecord.setAvailableAmt(actualAvailableAmt - 1);
+    }
+
+    public void setAvailableAmt (MusicRecord orderedMusicRecord) throws IOException, ClassNotFoundException, JAXBException {
+        if (FileService.NAME_OF_MUSIC_SHOP.equals(fileService.getClassToDo())){
+            MusicRecord musicRecord = musicRecordShop.getRecordList().stream().findAny().
+                    filter(recordFromList -> recordFromList.equals(orderedMusicRecord)).get();
+                    checkingAvailableAmt(musicRecord);
+        }
+        fileService.writeMusicRecordToXMLfile();
+    }
+
+    public void checkingAvailableAmt (MusicRecord musicRecord) throws IOException, ClassNotFoundException {
+        int actualAvailableAmt = musicRecord.getAvailableAmt();
+        if (actualAvailableAmt == 1){
+            settingsService.checkingListToGet().remove(musicRecord);
+        } else {
+            decreaseNumberOfAvailableRecordsOnStock(musicRecord);
+        }
+
     }
 }

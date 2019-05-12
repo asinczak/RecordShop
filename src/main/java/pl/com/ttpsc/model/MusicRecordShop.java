@@ -1,4 +1,4 @@
-package pl.com.ttpsc.Data;
+package pl.com.ttpsc.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,19 +7,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
-@XmlRootElement (name = "MusicShop")
+@XmlRootElement (name = "MusicRecordShop")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class MusicShop {
+public class MusicRecordShop {
 
-    private static MusicShop musicShop;
+    private static MusicRecordShop musicRecordShop;
 
-    private MusicShop(){}
+    private MusicRecordShop(){}
 
-    public static MusicShop getInstance(){
-        if (musicShop == null){
-            musicShop = new MusicShop();
+    public static MusicRecordShop getInstance(){
+        if (musicRecordShop == null){
+            musicRecordShop = new MusicRecordShop();
         }
-        return musicShop;
+        return musicRecordShop;
     }
 
     @XmlElement (name = "MusicRecord")

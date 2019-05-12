@@ -1,4 +1,4 @@
-package pl.com.ttpsc.Service;
+package pl.com.ttpsc.service;
 
 public interface IGeneralMessages {
 

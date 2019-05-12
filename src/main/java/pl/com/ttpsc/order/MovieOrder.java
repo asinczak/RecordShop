@@ -1,11 +1,15 @@
-package pl.com.ttpsc.Order;
+package pl.com.ttpsc.order;
 
-import pl.com.ttpsc.Data.MovieRecord;
-import pl.com.ttpsc.Data.Record;
+import pl.com.ttpsc.model.Record;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@XmlRootElement (name = "MovieOrder")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class MovieOrder {
 
     private static MovieOrder movieOrder;

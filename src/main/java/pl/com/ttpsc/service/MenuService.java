@@ -1,7 +1,7 @@
-package pl.com.ttpsc.Service;
+package pl.com.ttpsc.service;
 
-import pl.com.ttpsc.Data.MovieRecordLibrary;
-import pl.com.ttpsc.Data.MusicShop;
+import pl.com.ttpsc.model.MovieRecordLibrary;
+import pl.com.ttpsc.model.MusicRecordShop;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -20,15 +20,16 @@ public class MenuService {
 
     EnteringDataService enteringDataService = EnteringDataService.getInstance();
     MusicRecordService musicRecordService = MusicRecordService.getInstance();
-    MusicShop musicShop = MusicShop.getInstance();
+    MusicRecordShop musicRecordShop = MusicRecordShop.getInstance();
     FileService fileService = FileService.getInstance();
     DisplayService displayService = DisplayService.getInstance();
     MovieRecordService movieRecordService = MovieRecordService.getInstance();
     MovieRecordLibrary movieRecordLibrary = MovieRecordLibrary.getInstance();
+    OrderService orderService = OrderService.getInstance();
 
     public void menuForMusicShop() throws IOException, ClassNotFoundException, JAXBException {
 
-            musicShop.setRecordList(fileService.readMusicRecordFromXMLfile());
+            musicRecordShop.setRecordList(fileService.readMusicRecordFromXMLfile());
             boolean switchGoes = true;
             do {
 
@@ -100,6 +101,9 @@ public class MenuService {
                     displayService.displayAllRecords();
                     break;
                 case 3:
+                    orderService.takeAnOrder();
+                    break;
+                case 4:
                     switchGoes = false;
                     System.out.println(IGeneralMessages.INFO_STATEMENT_4);
                     break;

@@ -1,13 +1,8 @@
-package pl.com.ttpsc.Service;
+package pl.com.ttpsc.service;
 
-import pl.com.ttpsc.Data.*;
-import pl.com.ttpsc.Order.MovieOrder;
-import pl.com.ttpsc.Order.MusicOrder;
+import pl.com.ttpsc.model.*;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class EnteringDataService {
@@ -21,12 +16,11 @@ public class EnteringDataService {
         return enteringDataService;
     }
 
-    MusicShop musicShop = MusicShop.getInstance();
+   SettingsService settingsService = SettingsService.getInstance();
     DisplayService displayService = DisplayService.getInstance();
     ShopService shopService = ShopService.getInstance();
     FileService fileService = FileService.getInstance();
-    MovieOrder movieOrder = MovieOrder.getInstance();
-    MusicOrder musicOrder = MusicOrder.getInstance();
+
 
     public MusicRecord getDataToEnterNewMusicRecord() throws IOException, ClassNotFoundException {
         MusicRecord musicRecord = null;
@@ -49,7 +43,7 @@ public class EnteringDataService {
             int availableAmt = scanner.nextInt();
 
             musicRecord = new MusicRecord();
-            musicRecord.setId(assignId());
+            musicRecord.setId(shopService.assignIdToRecord());
             musicRecord.setAuthor(author);
             musicRecord.setTitle(title);
             musicRecord.setPrice(price);
@@ -59,22 +53,7 @@ public class EnteringDataService {
         }
     }
 
-    public int assignId () throws IOException, ClassNotFoundException {
-        int id = 1;
 
-        Optional<List<? extends Record>> list = Optional.ofNullable(displayService.checkingListToGet());
-
-        if (list.isPresent()){
-            List recordList = displayService.checkingListToGet();
-            Record record = (Record) recordList.stream().reduce((first, second) -> second).orElse(null);
-            int lastIdFromList = record.getId();
-            id = lastIdFromList + 1;
-            return id;
-        } else {
-
-            return id;
-        }
-    }
 
     public int getMenuOptionForMusicShop(){
         displayService.displayMenuForMusicShop();
@@ -178,10 +157,11 @@ public class EnteringDataService {
     public int getMenuOptionForMovieLibrary() {
         displayService.displayMenuForMovieLibrary();
 
-        Scanner scanner = new Scanner(System.in);
-        int menuOption = scanner.nextInt();
+        try (Scanner scanner = new Scanner(System.in)) {
+            int menuOption = scanner.nextInt();
 
-        return menuOption;
+            return menuOption;
+        }
     }
 
     public MovieRecord getDataToEnterNewMovieRecord() throws IOException, ClassNotFoundException {
@@ -201,22 +181,12 @@ public class EnteringDataService {
             double price = scanner.nextDouble();
 
             movieRecord = new MovieRecord();
-            movieRecord.setId(assignId());
+            movieRecord.setId(shopService.assignIdToRecord());
             movieRecord.setTitle(title);
             movieRecord.setPrice(price);
             movieRecord.setGenre(genre);
 
             return movieRecord;
-        }
-    }
-
-    public Map<Integer, Record> checkingOrderToGet () throws IOException, ClassNotFoundException {
-        String settings = fileService.getClassToDo();
-        if (FileService.NAME_OF_MUSIC_SHOP.equals(settings)){
-
-            return musicOrder.getMusicRecordOrder();
-        } else {
-            return movieOrder.getMovieRecordOrder();
         }
     }
 
