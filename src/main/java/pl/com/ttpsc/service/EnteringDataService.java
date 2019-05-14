@@ -16,7 +16,6 @@ public class EnteringDataService {
         return enteringDataService;
     }
 
-   SettingsService settingsService = SettingsService.getInstance();
     DisplayService displayService = DisplayService.getInstance();
     ShopService shopService = ShopService.getInstance();
     FileService fileService = FileService.getInstance();
@@ -53,15 +52,13 @@ public class EnteringDataService {
         }
     }
 
-
-
     public int getMenuOptionForMusicShop(){
         displayService.displayMenuForMusicShop();
 
         Scanner scanner = new Scanner(System.in);
-        int menuOption = scanner.nextInt();
+            int menuOption = scanner.nextInt();
 
-        return menuOption;
+            return menuOption;
     }
 
     public int getIdRecordToUpdate () throws IOException, ClassNotFoundException {
@@ -70,15 +67,14 @@ public class EnteringDataService {
 
         do {
             Scanner scanner = new Scanner(System.in);
-            System.out.println(IGeneralMessages.ENTER_DATA_5);
-            id = scanner.nextInt();
+                System.out.println(IGeneralMessages.ENTER_DATA_5);
+                id = scanner.nextInt();
 
-            if (shopService.checkingIfsuchIdExists(id)){
-                break;
-            } else {
-                System.out.println(IGeneralMessages.INFO_STATEMENT_3);
-            }
-
+                if (shopService.checkingIfsuchIdExistsInMusicShop(id)) {
+                    break;
+                } else {
+                    System.out.println(IGeneralMessages.INFO_STATEMENT_3);
+                }
         } while (true);
 
 
@@ -89,12 +85,11 @@ public class EnteringDataService {
         int dataToChange = 0;
         do {
             Scanner scanner = new Scanner(System.in);
-            System.out.println(IGeneralMessages.ENTER_DATA_6);
-            dataToChange = scanner.nextInt();
-            if(dataToChange < 5 & dataToChange > 0){
-                break;
-            }
-
+                System.out.println(IGeneralMessages.ENTER_DATA_6);
+                dataToChange = scanner.nextInt();
+                if (dataToChange < 5 & dataToChange > 0) {
+                    break;
+                }
         } while (true);
 
         return dataToChange;
@@ -103,36 +98,32 @@ public class EnteringDataService {
     public String getDataToChangeAuthor () {
         String data = "";
         Scanner scanner = new Scanner(System.in);
-        System.out.println(IGeneralMessages.ENTER_DATA_1);
-        data = scanner.nextLine();
-
+            System.out.println(IGeneralMessages.ENTER_DATA_1);
+            data = scanner.nextLine();
         return data;
     }
 
     public String getDataToChangeTitle () {
         String data = "";
         Scanner scanner = new Scanner(System.in);
-        System.out.println(IGeneralMessages.ENTER_DATA_2);
-        data = scanner.nextLine();
-
+            System.out.println(IGeneralMessages.ENTER_DATA_2);
+            data = scanner.nextLine();
         return data;
     }
 
     public double getDataToChangePrice () {
         double data = 0;
         Scanner scanner = new Scanner(System.in);
-        System.out.println(IGeneralMessages.ENTER_DATA_3);
-        data = scanner.nextDouble();
-
+            System.out.println(IGeneralMessages.ENTER_DATA_3);
+            data = scanner.nextDouble();
         return data;
     }
 
     public int getDataToChangeAvailableNumber () {
         int data = 0;
         Scanner scanner = new Scanner(System.in);
-        System.out.println(IGeneralMessages.ENTER_DATA_4);
-        data = scanner.nextInt();
-
+            System.out.println(IGeneralMessages.ENTER_DATA_4);
+            data = scanner.nextInt();
         return data;
     }
 
@@ -148,20 +139,18 @@ public class EnteringDataService {
         displayService.displayMainMenu();
 
         Scanner scanner = new Scanner(System.in);
-        int menuOption = scanner.nextInt();
-
-        return menuOption;
+            int menuOption = scanner.nextInt();
+            return menuOption;
 
     }
 
     public int getMenuOptionForMovieLibrary() {
         displayService.displayMenuForMovieLibrary();
 
-        try (Scanner scanner = new Scanner(System.in)) {
+        Scanner scanner = new Scanner(System.in);
             int menuOption = scanner.nextInt();
 
             return menuOption;
-        }
     }
 
     public MovieRecord getDataToEnterNewMovieRecord() throws IOException, ClassNotFoundException {
@@ -185,21 +174,21 @@ public class EnteringDataService {
             movieRecord.setTitle(title);
             movieRecord.setPrice(price);
             movieRecord.setGenre(genre);
-
-            return movieRecord;
         }
+            return movieRecord;
+
     }
 
     public int getDataToMakeAnOrder () throws IOException, ClassNotFoundException {
         displayService.displayAllRecords();
         int id = 0;
 
-            try (Scanner scanner = new Scanner(System.in)) {
-                System.out.println(IGeneralMessages.ENTER_DATA_9);
-                id = scanner.nextInt();
-            }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(IGeneralMessages.ENTER_DATA_9);
+        id = scanner.nextInt();
 
         return id;
     }
+
 
 }

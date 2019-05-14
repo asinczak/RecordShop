@@ -46,7 +46,7 @@ public class OrderService {
     }
 
     public void saveDataToOrder() throws IOException, ClassNotFoundException, JAXBException {
-        int counter = 1;
+
         boolean checking = true;
 
         do {
@@ -55,14 +55,39 @@ public class OrderService {
                 System.out.println(IGeneralMessages.INFO_STATEMENT_1);
                 checking = false;
             } else {
-              MusicRecord musicRecord = (MusicRecord) fillOrderList(counter, id);
-              musicRecordService.setAvailableAmt(musicRecord);
-                counter++;
+              checkingIfGivenIdIsCorrect(id);
             }
 
         }while (checking) ;
+    }
 
+    public void checkingIfGivenIdIsCorrect (int id) throws IOException, JAXBException, ClassNotFoundException {
 
+        if (FileService.NAME_OF_MUSIC_SHOP.equals(fileService.getClassToDo())){
+           checkingIfIdIsCorrectInMusicShop(id);
+        } else if (FileService.NAME_OF_RECORD_LIBRARY.equals(fileService.getClassToDo())){
+            checkingIfIdIsCorrectInMovieLibrary(id);
+        }
+    }
+
+    public void checkingIfIdIsCorrectInMusicShop (int id) throws IOException, ClassNotFoundException, JAXBException {
+        int counter = 1;
+        if (!shopService.checkingIfsuchIdExistsInMusicShop(id)){
+            System.out.println(IGeneralMessages.INFO_STATEMENT_2);
+        } else {
+            MusicRecord musicRecord = (MusicRecord) fillOrderList(counter, id);
+            musicRecordService.setAvailableAmt(musicRecord);
+            counter++;
+        }
+    }
+
+    public void checkingIfIdIsCorrectInMovieLibrary (int id) throws IOException, ClassNotFoundException {
+        int counter = 1;
+        if (!shopService.checkingIfsuchIdExistsInMovieLibrary(id)){
+            System.out.println(IGeneralMessages.INFO_STATEMENT_2);
+        } else {
+            fillOrderList(counter, id);
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package pl.com.ttpsc.service;
 
+import pl.com.ttpsc.model.MovieRecordLibrary;
 import pl.com.ttpsc.model.MusicRecordShop;
 import pl.com.ttpsc.model.Record;
 import pl.com.ttpsc.order.MovieOrder;
@@ -23,14 +24,15 @@ public class ShopService {
     }
 
     MusicRecordShop musicRecordShop = MusicRecordShop.getInstance();
+    MovieRecordLibrary movieRecordLibrary = MovieRecordLibrary.getInstance();
     SettingsService settingsService = SettingsService.getInstance();
     MusicOrder musicOrder = MusicOrder.getInstance();
     MovieOrder movieOrder = MovieOrder.getInstance();
     FileService fileService = FileService.getInstance();
 
-    public boolean checkingIfsuchIdExists (int id) {
-        boolean checking = musicRecordShop.getRecordList().stream().anyMatch(record -> id == record.getId());
+    public boolean checkingIfsuchIdExistsInMusicShop(int id) {
 
+        boolean checking = musicRecordShop.getRecordList().stream().anyMatch(record -> id == record.getId());
         return checking;
     }
 
@@ -67,20 +69,22 @@ public class ShopService {
     }
 
     public void removeRecordFromList () throws IOException, ClassNotFoundException {
-        Map <Integer, Record> orderMap = checkWhichOrderGet();
+        Map<Integer, Record> orderMap = checkWhichOrderGet();
 
-        for (Map.Entry<Integer, Record> entry : orderMap.entrySet()){
-            for (int i = 0; i<settingsService.checkingListToGet().size(); i++){
+        for (Map.Entry<Integer, Record> entry : orderMap.entrySet()) {
+            for (int i = 0; i < settingsService.checkingListToGet().size(); i++) {
                 Record record = entry.getValue();
                 if (record.equals(settingsService.checkingListToGet().get(i))) {
                     settingsService.checkingListToGet().remove(record);
                 }
             }
         }
-
-
-
-
     }
+
+        public boolean checkingIfsuchIdExistsInMovieLibrary (int id) {
+
+            boolean checking = movieRecordLibrary.getMovieRecordList().stream().anyMatch(record -> id == record.getId());
+            return checking;
+        }
 
 }

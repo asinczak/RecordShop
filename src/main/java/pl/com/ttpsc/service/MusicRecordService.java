@@ -79,6 +79,6 @@ public class MusicRecordService {
         } else {
             decreaseNumberOfAvailableRecordsOnStock(musicRecord);
         }
-
     }
+
 }
