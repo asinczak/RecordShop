@@ -108,7 +108,6 @@ public class FileService {
 
         MovieOrder movieOrder = (MovieOrder) unmarshaller.unmarshal(new File(MOVIE_ORDER_FILE_NAME));
 
-
         return movieOrder.getMovieRecordOrder();
     }
 }

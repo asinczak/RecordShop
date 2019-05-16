@@ -5,6 +5,8 @@ import pl.com.ttpsc.model.Record;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
 
 public class OrderService {
 
@@ -18,7 +20,6 @@ public class OrderService {
         return orderService;
     }
 
-
     SettingsService settingsService = SettingsService.getInstance();
     FileService fileService = FileService.getInstance();
     ShopService shopService = ShopService.getInstance();
@@ -26,27 +27,27 @@ public class OrderService {
     MusicRecordService musicRecordService = MusicRecordService.getInstance();
 
 
-
     public void takeAnOrder () throws IOException, ClassNotFoundException, JAXBException {
 
         if (FileService.NAME_OF_MUSIC_SHOP.equals(fileService.getClassToDo())) {
         saveDataToOrder();
         } else if (FileService.NAME_OF_RECORD_LIBRARY.equals(fileService.getClassToDo())) {
+            fileService.readMovieOrderFromXMLfile();
             saveDataToOrder();
             shopService.removeRecordFromList();
-            fileService.writeMusicRecordToXMLfile();
+            fileService.writeMovieRecordToXMLfile();
+            fileService.writeMovieOrderToXMLFile();
         }
     }
 
-    public Record fillOrderList (int counter, int id) throws IOException, ClassNotFoundException {
+    public Record fillOrderList (int id) throws IOException, ClassNotFoundException {
 
             Record record = shopService.getRecordFromGivenId(id);
-            settingsService.checkingOrderToGet().put(counter, record);
+            settingsService.checkingOrderToGet().put(getKeyIdFromOrder(), record);
             return record;
     }
 
     public void saveDataToOrder() throws IOException, ClassNotFoundException, JAXBException {
-
         boolean checking = true;
 
         do {
@@ -71,23 +72,38 @@ public class OrderService {
     }
 
     public void checkingIfIdIsCorrectInMusicShop (int id) throws IOException, ClassNotFoundException, JAXBException {
-        int counter = 1;
+
         if (!shopService.checkingIfsuchIdExistsInMusicShop(id)){
             System.out.println(IGeneralMessages.INFO_STATEMENT_2);
         } else {
-            MusicRecord musicRecord = (MusicRecord) fillOrderList(counter, id);
+            MusicRecord musicRecord = (MusicRecord) fillOrderList(id);
             musicRecordService.setAvailableAmt(musicRecord);
-            counter++;
         }
     }
 
     public void checkingIfIdIsCorrectInMovieLibrary (int id) throws IOException, ClassNotFoundException {
-        int counter = 1;
+
         if (!shopService.checkingIfsuchIdExistsInMovieLibrary(id)){
             System.out.println(IGeneralMessages.INFO_STATEMENT_2);
         } else {
-            fillOrderList(counter, id);
+            fillOrderList(id);
         }
+    }
+
+    public int getKeyIdFromOrder () throws IOException, ClassNotFoundException {
+        int theLastKey = 0;
+        for (Map.Entry <Integer, Record> entry : settingsService.checkingOrderToGet().entrySet()){
+            Optional <Integer> keyFromOrder = Optional.of(entry.getKey());
+            if(keyFromOrder.isPresent()) {
+                int key = entry.getKey();
+                if (key > theLastKey) {
+                    theLastKey = key;
+                }
+            } else {
+                theLastKey = 1;
+            }
+        }
+        return theLastKey;
     }
 
 

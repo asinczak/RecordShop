@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MovieOrder>
+    <movieRecordOrder>
+        <entry>
+            <key>1</key>
+            <value>
+                <id>6</id>
+                <title>Siedem</title>
+                <price>5.0</price>
+            </value>
+        </entry>
+        <entry>
+            <key>2</key>
+            <value>
+                <id>2</id>
+                <title>Zielona mila</title>
+                <price>5.0</price>
+            </value>
+        </entry>
+    </movieRecordOrder>
+</MovieOrder>

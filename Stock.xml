@@ -1,2 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<MusicRecordShop/>
+<MusicRecordShop>
+    <MusicRecord>
+        <id>1</id>
+        <title>Błysk</title>
+        <price>25.99</price>
+        <author>HEY</author>
+        <availableAmt>15</availableAmt>
+    </MusicRecord>
+    <MusicRecord>
+        <id>2</id>
+        <title>Czerwony</title>
+        <price>20.99</price>
+        <author>COMA</author>
+        <availableAmt>10</availableAmt>
+    </MusicRecord>
+    <MusicRecord>
+        <id>3</id>
+        <title>Złoto</title>
+        <price>25.99</price>
+        <author>Zalewski</author>
+        <availableAmt>10</availableAmt>
+    </MusicRecord>
+</MusicRecordShop>
