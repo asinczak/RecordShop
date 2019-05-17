@@ -2,6 +2,7 @@ package pl.com.ttpsc.service;
 
 import pl.com.ttpsc.model.*;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -62,7 +63,7 @@ public class EnteringDataService {
     }
 
     public int getIdRecordToUpdate () throws IOException, ClassNotFoundException {
-        int id = 0;
+        int id;
         displayService.displayAllRecords();
 
         do {
@@ -82,7 +83,7 @@ public class EnteringDataService {
     }
 
     public int getDataToChange () {
-        int dataToChange = 0;
+        int dataToChange;
         do {
             Scanner scanner = new Scanner(System.in);
                 System.out.println(IGeneralMessages.ENTER_DATA_6);
@@ -96,34 +97,33 @@ public class EnteringDataService {
     }
 
     public String getDataToChangeAuthor () {
-        String data = "";
         Scanner scanner = new Scanner(System.in);
             System.out.println(IGeneralMessages.ENTER_DATA_1);
-            data = scanner.nextLine();
+        String data = scanner.nextLine();
+
         return data;
     }
 
     public String getDataToChangeTitle () {
-        String data = "";
         Scanner scanner = new Scanner(System.in);
             System.out.println(IGeneralMessages.ENTER_DATA_2);
-            data = scanner.nextLine();
+        String data = scanner.nextLine();
+
         return data;
     }
 
     public double getDataToChangePrice () {
-        double data = 0;
         Scanner scanner = new Scanner(System.in);
             System.out.println(IGeneralMessages.ENTER_DATA_3);
-            data = scanner.nextDouble();
+        double data = scanner.nextDouble();
+
         return data;
     }
 
     public int getDataToChangeAvailableNumber () {
-        int data = 0;
         Scanner scanner = new Scanner(System.in);
             System.out.println(IGeneralMessages.ENTER_DATA_4);
-            data = scanner.nextInt();
+           int data = scanner.nextInt();
         return data;
     }
 
@@ -181,14 +181,22 @@ public class EnteringDataService {
 
     public int getDataToMakeAnOrder () throws IOException, ClassNotFoundException {
         displayService.displayAllRecords();
-        int id = 0;
 
         Scanner scanner = new Scanner(System.in);
         System.out.println(IGeneralMessages.ENTER_DATA_9);
-        id = scanner.nextInt();
+        int id = scanner.nextInt();
 
         return id;
     }
 
+    public int getDataToReturnRecord () throws JAXBException {
+        displayService.displayAllOrderedMovieRecords();
+
+        Scanner scanner =  new Scanner(System.in);
+        System.out.println(IGeneralMessages.ENTER_DATA_10);
+        int id = scanner.nextInt();
+
+        return id;
+    }
 
 }

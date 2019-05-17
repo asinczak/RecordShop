@@ -18,6 +18,8 @@ public interface IGeneralMessages {
     public static final String ENTER_DATA_8 = "Enter the genre of the film";
     public static final String ENTER_DATA_9 = "Enter id to add record to order"+
             "\n or enter 0 to finish";
+    public static final String ENTER_DATA_10 = "Enter order id to return record to library"+
+            "\n or enter 0 to finish";
 
 
     public static final String MENU_OPTION_1 = "*******************************************";
@@ -32,7 +34,8 @@ public interface IGeneralMessages {
     public static final String MENU_OPTION_10 = "1 -> to add new movie record to library";
     public static final String MENU_OPTION_11 = "2 -> to display all records from library";
     public static final String MENU_OPTION_12 = "3 -> to make an order";
-    public static final String MENU_OPTION_13 = "4 -> to exit";
+    public static final String MENU_OPTION_13 = "4 -> to return the movie to the library";
+    public static final String MENU_OPTION_14 = "5 -> to exit";
 
 
     public static final String INFO_STATEMENT_1 = "Finish!";

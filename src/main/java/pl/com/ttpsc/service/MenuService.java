@@ -26,6 +26,7 @@ public class MenuService {
     MovieRecordService movieRecordService = MovieRecordService.getInstance();
     MovieRecordLibrary movieRecordLibrary = MovieRecordLibrary.getInstance();
     OrderService orderService = OrderService.getInstance();
+    ReturnMovieRecordService returnMovieRecordService = ReturnMovieRecordService.getInstance();
 
     public void menuForMusicShop() throws IOException, ClassNotFoundException, JAXBException {
 
@@ -104,6 +105,9 @@ public class MenuService {
                     orderService.takeAnOrder();
                     break;
                 case 4:
+                    returnMovieRecordService.returnMusicRecord();
+                    break;
+                case 5:
                     switchGoes = false;
                     System.out.println(IGeneralMessages.INFO_STATEMENT_4);
                     break;

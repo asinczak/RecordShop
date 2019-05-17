@@ -7,18 +7,6 @@
         <genre>drama/comedy</genre>
     </MovieRecord>
     <MovieRecord>
-        <id>3</id>
-        <title>Skazani na Shawshank</title>
-        <price>5.0</price>
-        <genre>drama</genre>
-    </MovieRecord>
-    <MovieRecord>
-        <id>4</id>
-        <title>Forrest Gump</title>
-        <price>5.0</price>
-        <genre>drama/comedy</genre>
-    </MovieRecord>
-    <MovieRecord>
         <id>5</id>
         <title>Pulp fiction</title>
         <price>5.0</price>

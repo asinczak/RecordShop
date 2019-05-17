@@ -2,11 +2,13 @@ package pl.com.ttpsc.service;
 
 import pl.com.ttpsc.model.MusicRecord;
 import pl.com.ttpsc.model.Record;
+import pl.com.ttpsc.order.MovieOrder;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class OrderService {
 
@@ -25,6 +27,7 @@ public class OrderService {
     ShopService shopService = ShopService.getInstance();
     EnteringDataService enteringDataService = EnteringDataService.getInstance();
     MusicRecordService musicRecordService = MusicRecordService.getInstance();
+    MovieOrder movieOrder = MovieOrder.getInstance();
 
 
     public void takeAnOrder () throws IOException, ClassNotFoundException, JAXBException {
@@ -32,7 +35,7 @@ public class OrderService {
         if (FileService.NAME_OF_MUSIC_SHOP.equals(fileService.getClassToDo())) {
         saveDataToOrder();
         } else if (FileService.NAME_OF_RECORD_LIBRARY.equals(fileService.getClassToDo())) {
-            fileService.readMovieOrderFromXMLfile();
+            movieOrder.setMovieRecordOrder(fileService.readMovieOrderFromXMLfile());
             saveDataToOrder();
             shopService.removeRecordFromList();
             fileService.writeMovieRecordToXMLfile();
@@ -91,7 +94,7 @@ public class OrderService {
     }
 
     public int getKeyIdFromOrder () throws IOException, ClassNotFoundException {
-        int theLastKey = 0;
+        int theLastKey = 1;
         for (Map.Entry <Integer, Record> entry : settingsService.checkingOrderToGet().entrySet()){
             Optional <Integer> keyFromOrder = Optional.of(entry.getKey());
             if(keyFromOrder.isPresent()) {
@@ -99,13 +102,19 @@ public class OrderService {
                 if (key > theLastKey) {
                     theLastKey = key;
                 }
-            } else {
-                theLastKey = 1;
             }
         }
         return theLastKey;
     }
 
+    public boolean checkingIfSuchIdOrderExists (int id){
+        boolean checking = movieOrder.getMovieRecordOrder().entrySet().stream().anyMatch(k -> k.getKey().equals(id));
+        return checking;
+    }
 
+    public Stream<Record> getRecordFromOrdered (int id){
+        return movieOrder.getMovieRecordOrder().entrySet().stream().
+                filter(entry -> entry.getKey() == id).map(Map.Entry::getValue);
+    }
 
 }

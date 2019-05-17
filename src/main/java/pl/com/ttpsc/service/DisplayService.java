@@ -1,7 +1,9 @@
 package pl.com.ttpsc.service;
 
 import pl.com.ttpsc.model.Record;
+import pl.com.ttpsc.order.MovieOrder;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +21,8 @@ public class DisplayService {
     }
 
     SettingsService settingsService = SettingsService.getInstance();
+    FileService fileService = FileService.getInstance();
+    MovieOrder movieOrder = MovieOrder.getInstance();
 
     public void displayMenuForMusicShop (){
         System.out.println(IGeneralMessages.MENU_OPTION_1);
@@ -48,8 +52,6 @@ public class DisplayService {
         System.out.println(IGeneralMessages.MENU_OPTION_9);
     }
 
-
-
     public void displayMenuForMovieLibrary() {
         System.out.println(IGeneralMessages.MENU_OPTION_1);
         System.out.println(IGeneralMessages.MENU_OPTION_2);
@@ -57,7 +59,14 @@ public class DisplayService {
         System.out.println(IGeneralMessages.MENU_OPTION_11);
         System.out.println(IGeneralMessages.MENU_OPTION_12);
         System.out.println(IGeneralMessages.MENU_OPTION_13);
+        System.out.println(IGeneralMessages.MENU_OPTION_14);
 
+    }
+
+    public void displayAllOrderedMovieRecords () throws JAXBException {
+        movieOrder.setMovieRecordOrder(fileService.readMovieOrderFromXMLfile());
+
+        movieOrder.getMovieRecordOrder().forEach((k, v) -> System.out.println("Id order: "+  k +"\n movie record: "+ v));
     }
 }
 
